@@ -41,6 +41,11 @@ class UKF {
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
+  /** 
+   * Update of the filter state with the measure
+   */ 
+  void UpdateUKF(MeasurementPackage meas_package, Eigen::MatrixXd Zsig, int n_z);
+
 
   // initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
@@ -95,6 +100,9 @@ class UKF {
 
   // Sigma point spreading parameter
   double lambda_;
+
+  Eigen::MatrixXd R_radar_;
+  Eigen::MatrixXd R_lidar_;
 };
 
 #endif  // UKF_H
